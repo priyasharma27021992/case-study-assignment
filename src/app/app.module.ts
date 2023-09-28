@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app.routing.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app.routing.module';
     FormsModule,
     AgGridModule,
     AppRoutingModule,
+    CommonModule,
   ],
   declarations: [
     AppComponent,

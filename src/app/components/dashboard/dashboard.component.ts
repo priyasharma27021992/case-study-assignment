@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import {
+  ColDef,
+  ColumnApi,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+} from 'ag-grid-community';
 import { TableDataService } from 'src/app/core/services/table-data.service';
 import { IProductData } from 'src/app/utils/interfaces/interfaces';
 import 'ag-grid-enterprise';
@@ -22,7 +28,8 @@ export class DashboardComponent {
   public rowData!: IProductData[];
 
   constructor(private api: TableDataService) {}
-  private gridApi!: GridApi;
+  public gridApi!: GridApi;
+  public gridOptions: GridOptions = <GridOptions>{};
 
   onGridReady(params: GridReadyEvent<IProductData>) {
     this.api.getTableData().subscribe((data: IProductData[]) => {
