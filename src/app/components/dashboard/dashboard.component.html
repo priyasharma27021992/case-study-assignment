@@ -1,0 +1,16 @@
+<div style="margin-bottom: 5px; min-height: 30px">
+  <button
+    (click)="refreshData()"
+    class="bg-blue-500 hover:bg-blue-700 text-white ml-10 font-bold py-2 px-4 rounded">
+    Refresh Data
+  </button>
+</div>
+<ag-grid-angular
+  style="width: 100vw; height: 90vh"
+  class="ag-theme-alpine m-1 p-2 md:m-2 md:px-10 md:py-3"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [sideBar]="true"
+  [rowData]="rowData"
+  (gridReady)="onGridReady($event)">
+</ag-grid-angular>

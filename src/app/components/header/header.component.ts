@@ -5,4 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  isOpen = false;
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+  }
+
+  get navbarButtonClass() {
+    return this.isOpen ? '' : 'hidden';
+  }
+}

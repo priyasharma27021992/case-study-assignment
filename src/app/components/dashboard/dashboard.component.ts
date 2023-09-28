@@ -1,20 +1,12 @@
 import { Component } from '@angular/core';
-import { ColDef, GridReadyEvent } from 'ag-grid-community';
+import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { TableDataService } from 'src/app/core/services/table-data.service';
 import { IProductData } from 'src/app/utils/interfaces/interfaces';
 import 'ag-grid-enterprise';
 
 @Component({
   selector: 'app-dashboard',
-  template: `<ag-grid-angular
-    style="width: 100vw; height: 90vh;"
-    class="ag-theme-alpine m-2 p-10"
-    [columnDefs]="columnDefs"
-    [defaultColDef]="defaultColDef"
-    [sideBar]="true"
-    [rowData]="rowData"
-    (gridReady)="onGridReady($event)">
-  </ag-grid-angular>`,
+  templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
   public columnDefs: ColDef[] = [];
@@ -22,13 +14,15 @@ export class DashboardComponent {
   public defaultColDef: ColDef = {
     sortable: true,
     flex: 1,
-    minWidth: 150,
+    minWidth: 100,
     resizable: true,
+    editable: true,
   };
 
   public rowData!: IProductData[];
 
   constructor(private api: TableDataService) {}
+  private gridApi!: GridApi;
 
   onGridReady(params: GridReadyEvent<IProductData>) {
     this.api.getTableData().subscribe((data: IProductData[]) => {
@@ -42,5 +36,10 @@ export class DashboardComponent {
         params.api.setRowData(data);
       }
     });
+  }
+
+  // though it is not working now but if we actual call an api it will work
+  refreshData() {
+    this.gridApi.refreshCells();
   }
 }
